@@ -8,10 +8,16 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    private lazy var customView: UIView = {
+        let view = UIView(frame: .zero)
+        view.backgroundColor = .green
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupView()
     }
 
@@ -33,13 +39,17 @@ class ViewController: UIViewController {
     
     private func setupView() {
         
-        let customView = UIView(frame: .zero)
         
-        customView.backgroundColor = .green
-        customView.translatesAutoresizingMaskIntoConstraints = false
-        
+        setHierarchy()
+        setConstraints()
+    }
+    
+    
+    private func setHierarchy(){
         view.addSubview(customView)
-        
+    }
+    
+    private func setConstraints(){
         NSLayoutConstraint.activate([
             customView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             customView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
